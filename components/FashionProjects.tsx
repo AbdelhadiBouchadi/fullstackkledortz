@@ -121,7 +121,7 @@ const FashionProjects = () => {
         <Parallax
           speed={project.speed}
           key={index}
-          className={`scale-75 2xl:scale-100 z-[60] cursor-pointer`}
+          className={`self-${project.position} scale-75 2xl:scale-100 z-[60] cursor-pointer`}
         >
           <motion.div
             variants={fadeIn(`${index % 2 === 0 ? 'right' : 'left'}`, 0.4)}
