@@ -37,7 +37,7 @@ const Beauty = () => {
   }, []);
 
   return (
-    <>
+    <div className="relative flex flex-col px-4  md:px-8 lg:px-16 py-12 dark:bg-black">
       <div className="fixed z-[70] top-0 left-0 w-screen h-screen pointer-events-none">
         <div className="absolute flex bg-white dark:bg-black  p-4 md:p-6 lg:p-8 top-0 left-0 right-0">
           <div
@@ -87,7 +87,7 @@ const Beauty = () => {
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ContactUs />
       </Modal>
-    </>
+    </div>
   );
 };
 

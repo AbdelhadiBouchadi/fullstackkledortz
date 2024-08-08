@@ -75,3 +75,8 @@ export function encryptKey(passkey: string) {
 export function decryptKey(passkey: string) {
   return atob(passkey);
 }
+
+export const handleError = (error: unknown) => {
+  console.error(error);
+  throw new Error(typeof error === 'string' ? error : JSON.stringify(error));
+};

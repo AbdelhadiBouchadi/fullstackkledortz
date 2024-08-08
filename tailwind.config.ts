@@ -77,6 +77,9 @@ const config = {
           700: '#ABB8C4',
         },
       },
+      backgroundImage: {
+        appointments: "url('/images/appointments-bg.png')",
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

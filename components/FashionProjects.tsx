@@ -101,6 +101,19 @@ const projects: ProjectData[] = [
   },
 ];
 
+const getPositionClass = (position: 'start' | 'center' | 'end') => {
+  switch (position) {
+    case 'start':
+      return 'self-start';
+    case 'center':
+      return 'self-center';
+    case 'end':
+      return 'self-end';
+    default:
+      return '';
+  }
+};
+
 const FashionProjects = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<ProjectData | null>(null);
@@ -121,7 +134,9 @@ const FashionProjects = () => {
         <Parallax
           speed={project.speed}
           key={index}
-          className={`self-${project.position} scale-75 2xl:scale-100 z-[60] cursor-pointer`}
+          className={`${getPositionClass(
+            project.position
+          )} scale-75 2xl:scale-100 z-[60] cursor-pointer`}
         >
           <motion.div
             variants={fadeIn(`${index % 2 === 0 ? 'right' : 'left'}`, 0.4)}

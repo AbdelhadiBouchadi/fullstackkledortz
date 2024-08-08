@@ -15,13 +15,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       enableSystem
       disableTransitionOnChange
     >
-      <div
-        className={`relative flex flex-col px-4  md:px-8 lg:px-16 py-12 dark:bg-black  `}
-      >
-        <SmoothScroll>
-          <AnimatePresence mode="wait">{children}</AnimatePresence>
-        </SmoothScroll>
-      </div>
+      <SmoothScroll>
+        <AnimatePresence mode="wait">{children}</AnimatePresence>
+      </SmoothScroll>
     </ThemeProvider>
   );
 };
