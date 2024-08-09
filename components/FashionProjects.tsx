@@ -1,12 +1,11 @@
 'use client';
 
-import React, { Suspense, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Parallax } from './Parallax';
 import { fadeIn } from '../variants';
 import { motion } from 'framer-motion';
 import Modal from './Modal';
-import { Skeleton } from './ui/skeleton';
 
 interface ProjectData {
   _id: string; // MongoDB document ID
@@ -69,28 +68,18 @@ const FashionProjects = ({ projects }: FashionProjectsProps) => {
             className="relative h-full w-full group"
             onClick={() => openModal(project)}
           >
-            <Suspense
-              fallback={
-                <Skeleton
-                  className={
-                    project.aspectRatio === '16/9' ? 'w-[700px]' : 'w-[400px]'
-                  }
-                />
-              }
-            >
-              <Image
-                src={project.imageUrl}
-                alt="project_image"
-                width={project.aspectRatio === '16/9' ? 700 : 400}
-                height={project.aspectRatio === '9/16' ? 700 : 400}
-                priority={project.priority}
-                sizes="50vw"
-              />
-              <div className="absolute top-0 left-0 w-full h-full hidden group-hover:flex group-hover:justify-center group-hover:items-center bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out" />
-              <div className="absolute top-0 left-0 w-full h-full justify-center items-center flex text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out ">
-                {project.title}
-              </div>
-            </Suspense>
+            <Image
+              src={project.imageUrl}
+              alt="project_image"
+              width={project.aspectRatio === '16/9' ? 700 : 400}
+              height={project.aspectRatio === '9/16' ? 700 : 400}
+              priority={project.priority}
+              sizes="50vw"
+            />
+            <div className="absolute top-0 left-0 w-full h-full hidden group-hover:flex group-hover:justify-center group-hover:items-center bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out" />
+            <div className="absolute top-0 left-0 w-full h-full justify-center items-center flex text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out uppercase ">
+              {project.title}
+            </div>
           </motion.div>
         </Parallax>
       ))}
