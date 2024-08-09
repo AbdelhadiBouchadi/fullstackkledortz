@@ -1,11 +1,22 @@
 import columns from '@/components/columns';
 import { DataTable } from '@/components/DataTable';
 import { StatCard } from '@/components/StatCard';
+import { buttonVariants } from '@/components/ui/button';
 import { getAllProjects } from '@/lib/actions/project.actions';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import React from 'react';
 
 const Admin = async () => {
   const projects = await getAllProjects();
+
+  const projectCounts = projects.reduce(
+    (counts, project) => {
+      counts[project.category]++;
+      return counts;
+    },
+    { fashion: 0, beauty: 0, luxury: 0 }
+  );
 
   return (
     <main className="admin-main">
@@ -19,25 +30,35 @@ const Admin = async () => {
       <section className="admin-stat">
         <StatCard
           type="fashion"
-          count={0}
+          count={projectCounts.fashion}
           label="Fashion Projects"
           icon={'/assets/icons/appointments.svg'}
         />
         <StatCard
           type="beauty"
-          count={5}
+          count={projectCounts.beauty}
           label="Beauty Projects"
           icon={'/assets/icons/appointments.svg'}
         />
         <StatCard
           type="luxury"
-          count={4}
+          count={projectCounts.luxury}
           label="Luxury Projects"
           icon={'/assets/icons/appointments.svg'}
         />
       </section>
 
       <DataTable columns={columns} data={projects} />
+
+      <Link
+        href="/admin/create"
+        className={cn(
+          'capitalize bg-[#24ae7c] w-full',
+          buttonVariants({ variant: 'secondary' })
+        )}
+      >
+        Create a new project
+      </Link>
     </main>
   );
 };

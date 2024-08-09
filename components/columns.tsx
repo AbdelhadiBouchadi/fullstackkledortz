@@ -5,6 +5,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Button, buttonVariants } from './ui/button';
 import Link from 'next/link';
 import { DeleteConfirmation } from './DeleteConfirmation';
+import { cn } from '@/lib/utils';
 
 export const columns: ColumnDef<IProject>[] = [
   {
@@ -17,14 +18,16 @@ export const columns: ColumnDef<IProject>[] = [
     accessorKey: 'title',
     header: 'Project Title',
     cell: ({ row }) => {
-      return <p text-14-medium>{row.original.title}</p>;
+      return <p className="text-14-medium">{row.original.title}</p>;
     },
   },
   {
     accessorKey: 'category',
     header: 'Category',
     cell: ({ row }) => {
-      return <p text-14-medium>{row.original.category}</p>;
+      return (
+        <p className="text-14-medium capitalize">{row.original.category}</p>
+      );
     },
   },
   {
@@ -32,7 +35,7 @@ export const columns: ColumnDef<IProject>[] = [
     header: 'Created At',
     cell: ({ row }) => {
       return (
-        <p text-14-medium>
+        <p className="text-14-medium">
           {new Date(row.original.createdAt).toLocaleDateString()}
         </p>
       );
@@ -42,21 +45,25 @@ export const columns: ColumnDef<IProject>[] = [
     accessorKey: '_id',
     header: 'Project ID',
     cell: ({ row }) => {
-      return <p>{row.original._id}</p>;
+      return <p className="text-14-medium">{row.original._id}</p>;
     },
   },
   {
-    id: 'actions',
+    id: '_id',
     header: 'Actions',
     cell: ({ row }) => {
       const projectId = row.original._id;
 
       return (
         <div className="flex gap-1">
-          <Link href={`/admin/update/${projectId}`}>
-            <Button variant="ghost" className="capitalize text-green-500">
-              Edit
-            </Button>
+          <Link
+            href={`/admin/${projectId}/update`}
+            className={cn(
+              'capitalize text-green-500',
+              buttonVariants({ variant: 'ghost' })
+            )}
+          >
+            Edit
           </Link>
 
           <DeleteConfirmation projectId={projectId} />

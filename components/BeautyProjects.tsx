@@ -8,110 +8,22 @@ import { motion } from 'framer-motion';
 import Modal from './Modal';
 
 interface ProjectData {
-  source: string;
-  alt: string;
-  aspectRatio: '16/9' | '9/16';
+  _id: string; // MongoDB document ID
+  title: string;
   priority: boolean;
   position: 'start' | 'center' | 'end';
+  videoSource: string;
   speed: number;
-  vidSource: string;
-  title: string;
+  aspectRatio: '16/9' | '9/16';
+  imageUrl: string;
+  category: 'fashion' | 'beauty' | 'luxury';
 }
 
-const projects: ProjectData[] = [
-  {
-    source: `https://picsum.photos/700/400?random=1`,
-    alt: 'Image',
-    aspectRatio: '16/9',
-    priority: true,
-    position: 'start',
-    speed: 1,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/400/700?random=2`,
-    alt: 'Image',
-    aspectRatio: '9/16',
-    priority: true,
-    position: 'end',
-    speed: -2,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/700/400?random=3`,
-    alt: 'Image',
-    aspectRatio: '16/9',
-    priority: false,
-    position: 'start',
-    speed: -4,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/400/700?random=4`,
-    alt: 'Image',
-    aspectRatio: '9/16',
-    priority: false,
-    position: 'start',
-    speed: -2,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/700/400?random=5`,
-    alt: 'Image',
-    aspectRatio: '16/9',
-    priority: false,
-    position: 'center',
-    speed: -3,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/700/400?random=6`,
-    alt: 'Image',
-    aspectRatio: '16/9',
-    priority: false,
-    position: 'end',
-    speed: -1,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/400/700?random=7`,
-    alt: 'Image',
-    aspectRatio: '9/16',
-    priority: false,
-    position: 'end',
-    speed: 2,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/700/400?random=8`,
-    alt: 'Image',
-    aspectRatio: '16/9',
-    priority: false,
-    position: 'start',
-    speed: -4,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/400/700?random=9`,
-    alt: 'Image',
-    aspectRatio: '9/16',
-    priority: true,
-    position: 'center',
-    speed: -2,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-];
+interface FashionProjectsProps {
+  projects: ProjectData[];
+}
 
-const BeautyProjects = () => {
+const BeautyProjects = ({ projects }: FashionProjectsProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<ProjectData | null>(null);
 
@@ -142,7 +54,7 @@ const BeautyProjects = () => {
             onClick={() => openModal(project)}
           >
             <Image
-              src={project.source}
+              src={project.imageUrl}
               alt="project_image"
               width={project.aspectRatio === '16/9' ? 700 : 400}
               height={project.aspectRatio === '9/16' ? 700 : 400}
@@ -162,7 +74,7 @@ const BeautyProjects = () => {
             <div className="absolute top-0 left-0 w-full h-full flex flex-col">
               <div className="w-full h-full bg-black relative">
                 <iframe
-                  src={selectedImage.vidSource}
+                  src={selectedImage.videoSource}
                   width="1920"
                   height="1080"
                   allowFullScreen

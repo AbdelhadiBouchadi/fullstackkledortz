@@ -6,7 +6,7 @@ import {
   UpdateProjectParams,
 } from '@/types';
 import { connectToDatabase } from '../database';
-import Project from '../database/models/project.model';
+import Project, { IProject } from '../database/models/project.model';
 import { revalidatePath } from 'next/cache';
 import { handleError, parseStringify } from '../utils';
 
@@ -17,6 +17,9 @@ export const createProject = async (project: CreateProjectParams) => {
     const newProject = await Project.create({
       ...project,
     });
+
+    console.log(newProject._id);
+    console.log(newProject.createdAt);
 
     revalidatePath('/admin');
     return parseStringify(newProject);
@@ -63,13 +66,65 @@ export const deleteProject = async ({
   }
 };
 
-export const getAllProjects = async () => {
+export async function getAllProjects(): Promise<IProject[]> {
   try {
     await connectToDatabase();
-    const projects = await Project.find().sort({ createdAt: -1 }).exec();
-    return projects;
+
+    // Fetch all projects as Project documents
+    const projects = await Project.find().sort({ createdAt: 'desc' });
+
+    return projects.map((project) => {
+      return {
+        ...project.toObject(), // Convert to plain object
+        _id: project._id.toString(), // Convert _id to string
+        createdAt: project.createdAt.toISOString(), // Convert createdAt to string
+      } as IProject;
+    });
   } catch (error) {
-    console.error('Error fetching projects', error);
+    console.error('Error fetching projects:', error);
     throw new Error('Failed to fetch projects');
   }
+}
+
+export const getProjectById = async (id: string) => {
+  try {
+    await connectToDatabase();
+
+    const project = await Project.findById(id);
+    if (!project) {
+      throw new Error('Project not found');
+    }
+
+    return parseStringify(project);
+  } catch (error) {
+    throw new Error('Error fetching the specified project');
+  }
+};
+
+// Helper function to fetch projects by category
+const getProjectsByCategory = async (category: string) => {
+  try {
+    await connectToDatabase();
+
+    const projects = await Project.find({ category }).exec();
+    return parseStringify(projects);
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch projects');
+  }
+};
+
+// Get fashion projects
+export const getFashionProjects = async () => {
+  return getProjectsByCategory('fashion');
+};
+
+// Get beauty projects
+export const getBeautyProjects = async () => {
+  return getProjectsByCategory('beauty');
+};
+
+// Get luxury projects
+export const getLuxuryProjects = async () => {
+  return getProjectsByCategory('luxury');
 };

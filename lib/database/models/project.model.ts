@@ -12,6 +12,7 @@ export interface IProject extends Document {
   imageUrl?: string;
   category: 'fashion' | 'beauty' | 'luxury';
   createdAt: Date;
+  __v?: number;
 }
 
 // Schema for the Project model

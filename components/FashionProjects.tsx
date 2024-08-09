@@ -1,105 +1,28 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Image from 'next/image';
 import { Parallax } from './Parallax';
 import { fadeIn } from '../variants';
 import { motion } from 'framer-motion';
 import Modal from './Modal';
+import { Skeleton } from './ui/skeleton';
 
 interface ProjectData {
-  source: string;
-  aspectRatio: '16/9' | '9/16';
+  _id: string; // MongoDB document ID
+  title: string;
   priority: boolean;
   position: 'start' | 'center' | 'end';
+  videoSource: string;
   speed: number;
-  vidSource: string;
-  title: string;
+  aspectRatio: '16/9' | '9/16';
+  imageUrl: string;
+  category: 'fashion' | 'beauty' | 'luxury';
 }
 
-const projects: ProjectData[] = [
-  {
-    source: `https://picsum.photos/700/400?random=1`,
-    aspectRatio: '16/9',
-    priority: true,
-    position: 'start',
-    speed: 1,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/400/700?random=2`,
-    aspectRatio: '9/16',
-    priority: true,
-    position: 'end',
-    speed: -2,
-    vidSource: 'https://player.vimeo.com/video/549289388?h=7af64b09ad',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/700/400?random=3`,
-    aspectRatio: '16/9',
-    priority: false,
-    position: 'start',
-    speed: -4,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/400/700?random=4`,
-    aspectRatio: '9/16',
-    priority: false,
-    position: 'start',
-    speed: -2,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/700/400?random=5`,
-    aspectRatio: '16/9',
-    priority: false,
-    position: 'center',
-    speed: -3,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/700/400?random=6`,
-    aspectRatio: '16/9',
-    priority: false,
-    position: 'end',
-    speed: -1,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/400/700?random=7`,
-    aspectRatio: '9/16',
-    priority: false,
-    position: 'end',
-    speed: 2,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/700/400?random=8`,
-    aspectRatio: '16/9',
-    priority: false,
-    position: 'start',
-    speed: -4,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-  {
-    source: `https://picsum.photos/400/700?random=9`,
-    aspectRatio: '9/16',
-    priority: true,
-    position: 'center',
-    speed: -2,
-    vidSource: 'https://player.vimeo.com/video/610505833?h=63772064cf',
-    title: 'Dior',
-  },
-];
+interface FashionProjectsProps {
+  projects: ProjectData[];
+}
 
 const getPositionClass = (position: 'start' | 'center' | 'end') => {
   switch (position) {
@@ -114,7 +37,7 @@ const getPositionClass = (position: 'start' | 'center' | 'end') => {
   }
 };
 
-const FashionProjects = () => {
+const FashionProjects = ({ projects }: FashionProjectsProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<ProjectData | null>(null);
 
@@ -146,18 +69,28 @@ const FashionProjects = () => {
             className="relative h-full w-full group"
             onClick={() => openModal(project)}
           >
-            <Image
-              src={project.source}
-              alt="project_image"
-              width={project.aspectRatio === '16/9' ? 700 : 400}
-              height={project.aspectRatio === '9/16' ? 700 : 400}
-              priority={project.priority}
-              sizes="50vw"
-            />
-            <div className="absolute top-0 left-0 w-full h-full hidden group-hover:flex group-hover:justify-center group-hover:items-center bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out" />
-            <div className="absolute top-0 left-0 w-full h-full justify-center items-center flex text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out ">
-              {project.title}
-            </div>
+            <Suspense
+              fallback={
+                <Skeleton
+                  className={
+                    project.aspectRatio === '16/9' ? 'w-[700px]' : 'w-[400px]'
+                  }
+                />
+              }
+            >
+              <Image
+                src={project.imageUrl}
+                alt="project_image"
+                width={project.aspectRatio === '16/9' ? 700 : 400}
+                height={project.aspectRatio === '9/16' ? 700 : 400}
+                priority={project.priority}
+                sizes="50vw"
+              />
+              <div className="absolute top-0 left-0 w-full h-full hidden group-hover:flex group-hover:justify-center group-hover:items-center bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out" />
+              <div className="absolute top-0 left-0 w-full h-full justify-center items-center flex text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out ">
+                {project.title}
+              </div>
+            </Suspense>
           </motion.div>
         </Parallax>
       ))}
@@ -167,7 +100,7 @@ const FashionProjects = () => {
             <div className="absolute top-0 left-0 w-full h-full flex flex-col">
               <div className="w-full h-full bg-black relative">
                 <iframe
-                  src={selectedImage.vidSource}
+                  src={selectedImage.videoSource}
                   width="1920"
                   height="1080"
                   allowFullScreen
