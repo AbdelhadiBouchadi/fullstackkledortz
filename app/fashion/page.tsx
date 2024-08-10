@@ -1,30 +1,16 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Modal from '../../components/Modal';
 import ContactUs from '../../components/ContactUs';
 import FashionProjects from '@/components/FashionProjects';
 import { getFashionProjects } from '@/lib/actions/project.actions';
+import Loading from './loading';
 
 const Fashion = () => {
-  const [projects, setProjects] = useState<any[]>([]);
-
   const [isScrolling, setIsScrolling] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const fetchedProjects = await getFashionProjects();
-        setProjects(fetchedProjects);
-      } catch (error) {
-        console.error('Failed to fetch projects', error);
-      }
-    };
-
-    fetchProjects();
-  }, []);
 
   function openModal() {
     setIsOpen(true);
@@ -85,7 +71,9 @@ const Fashion = () => {
         </div>
       </div>
       <div className="p-8 xl:p-16 2xl:p-32 flex flex-col w-full items-center justify-center gap-8">
-        <FashionProjects projects={projects} />
+        <Suspense fallback={<Loading />}>
+          <ProjectsWithData />
+        </Suspense>
       </div>
       <div className="w-full h-full flex justify-between items-center py-2 md:py-8 px-2 md:px-4">
         <Link href="/">
@@ -108,3 +96,30 @@ const Fashion = () => {
 };
 
 export default Fashion;
+
+// ProjectsWithData component
+const ProjectsWithData = () => {
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const fetchedProjects = await getFashionProjects();
+        setProjects(fetchedProjects);
+      } catch (error) {
+        console.error('Failed to fetch projects', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  return <FashionProjects projects={projects} />;
+};

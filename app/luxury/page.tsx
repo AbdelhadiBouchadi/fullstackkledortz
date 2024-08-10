@@ -1,30 +1,16 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Modal from '../../components/Modal';
 import ContactUs from '../../components/ContactUs';
 import LuxuryProjects from '@/components/LuxuryProjects';
 import { getLuxuryProjects } from '@/lib/actions/project.actions';
+import Loading from './loading';
 
 const Beauty = () => {
-  const [projects, setProjects] = useState<any[]>([]);
-
   const [isScrolling, setIsScrolling] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const fetchedProjects = await getLuxuryProjects();
-        setProjects(fetchedProjects);
-      } catch (error) {
-        console.error('Failed to fetch projects', error);
-      }
-    };
-
-    fetchProjects();
-  }, []);
 
   function openModal() {
     setIsOpen(true);
@@ -85,7 +71,9 @@ const Beauty = () => {
         </div>
       </div>
       <div className="p-8 xl:p-16 2xl:p-32 flex flex-col w-full items-center justify-center gap-8">
-        <LuxuryProjects projects={projects} />
+        <Suspense fallback={<Loading />}>
+          <ProjectsWithData />
+        </Suspense>
       </div>
       <div className="w-full h-full flex justify-between items-center py-2 md:py-8 px-2 md:px-4">
         <Link href="/">
@@ -108,3 +96,30 @@ const Beauty = () => {
 };
 
 export default Beauty;
+
+// ProjectsWithData component
+const ProjectsWithData = () => {
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const fetchedProjects = await getLuxuryProjects();
+        setProjects(fetchedProjects);
+      } catch (error) {
+        console.error('Failed to fetch projects', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  return <LuxuryProjects projects={projects} />;
+};

@@ -62,8 +62,8 @@
 @layer base {
   @font-face {
     font-family: 'Arial Black';
-    src: url('/fonts/Arial Black.woff2') format('woff2'),
-         url('/fonts/Arial Black.woff') format('woff');
+    src: url('/font/Arial Black.woff2') format('woff2'),
+         url('/font/Arial Black.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;

@@ -3,7 +3,7 @@ import React from 'react';
 
 const Loading = () => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-col justify-center items-center gap-4">
       <Image
         src="/assets/icons/loader.svg"
         alt="loader"
@@ -11,7 +11,9 @@ const Loading = () => {
         height={24}
         className="animate-spin"
       />
-      Content is loading. Please wait ...
+      <p className="text-24-bold text-center">
+        Content is loading. Please wait ...
+      </p>
     </div>
   );
 };
