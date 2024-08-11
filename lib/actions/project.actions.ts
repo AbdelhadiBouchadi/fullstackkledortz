@@ -18,9 +18,6 @@ export const createProject = async (project: CreateProjectParams) => {
       ...project,
     });
 
-    console.log(newProject._id);
-    console.log(newProject.createdAt);
-
     revalidatePath('/admin');
     return parseStringify(newProject);
   } catch (error) {
