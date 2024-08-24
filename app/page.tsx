@@ -56,7 +56,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
           <div className="absolute flex  p-4 md:p-6 lg:p-8 bottom-0 left-0 right-0">
             <div className="w-full h-0.5 bg-black dark:bg-white relative glitch-line"></div>
           </div>
-          <div className="absolute flex  p-4 md:p-6 lg:p-8 pr-0 md:pr-0 lg:pr-0 top-0 left-0 bottom-0">
+          <div className="absolute flex  p-4 md:p-6 lg:p-8 pr-0 md:pr-0 lg:pr-0 top-0 left-0 bottom-0 z-50">
             <div className="h-full w-0.5 bg-black dark:bg-white relative glitch-line"></div>
           </div>
           <div className="absolute flex  p-4 md:p-6 lg:p-8 pl-0 md:pl-0 lg:pl-0 top-0 right-0 bottom-0">
@@ -108,20 +108,6 @@ const Home = ({ searchParams }: SearchParamProps) => {
             <h6 className="uppercase text-2xl font-semibold cursor-pointer hover:scale-110 transition-all duration-300 tracking-widest">
               contact
             </h6>
-          </motion.div>
-          <motion.div
-            variants={fadeIn('left', 0.4)}
-            initial="show"
-            animate="show"
-            exit="hidden"
-            className="absolute right-8 -top-0 md:top-0 flex justify-center items-center 2xl:top-0 z-20"
-          >
-            <Link
-              href="/?admin=true"
-              className="uppercase text-2xl font-semibold cursor-pointer hover:scale-110 transition-all duration-300 tracking-widest"
-            >
-              admin
-            </Link>
           </motion.div>
         </div>
 
