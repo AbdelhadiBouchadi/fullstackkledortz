@@ -35,7 +35,7 @@ const ContactUs = () => {
             className="underline text-lg text-center"
             target="_blank"
           >
-            +33 6 03 2117 91
+            +33 6 60 58 78 39
           </Link>
           <span className="hidden lg:inline-block font-semibold">/</span>
           <Link
