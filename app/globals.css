@@ -78,7 +78,7 @@
 
   * {
     @apply border-border;
-    font-family: 'AlteHaasGroteskBold', sans-serif;
+    font-family: 'AlteHaasGroteskBold';
   }
   body {
     @apply bg-background text-foreground;
@@ -93,7 +93,7 @@
   }
 
   .project-title {
-    font-family: 'AlteHaasGroteskRegular', sans-serif;
+    font-family: 'AlteHaasGroteskRegular';
   }
   
 }
