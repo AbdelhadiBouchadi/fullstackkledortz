@@ -77,12 +77,12 @@ const Beauty = () => {
       </div>
       <div className="w-full h-full flex justify-between items-center py-2 md:py-8 px-2 md:px-4">
         <Link href="/">
-          <h4 className="uppercase text-xl md:text-2xl xl:text-4xl font-bold hover:scale-125 transition-all duration-300 tracking-widest">
+          <h4 className="uppercase text-xl md:text-2xl xl:text-4xl font-[800] hover:scale-125 transition-all duration-300 tracking-widest">
             k le dortz
           </h4>
         </Link>
         <h4
-          className="uppercase text-xl md:text-2xl xl:text-4xl font-bold cursor-pointer hover:scale-125 transition-all duration-300 tracking-widest"
+          className="uppercase text-xl md:text-2xl xl:text-4xl font-[800] cursor-pointer hover:scale-125 transition-all duration-300 tracking-widest"
           onClick={() => openModal()}
         >
           contact
