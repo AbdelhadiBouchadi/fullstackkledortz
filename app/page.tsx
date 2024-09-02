@@ -75,7 +75,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
               onMouseEnter={toggleTheme}
               onMouseLeave={toggleTheme}
             >
-              <h1 className="text-4xl lg:text-6xl xl:text-8xl font-bold uppercase">
+              <h1 className="text-4xl lg:text-6xl xl:text-8xl font-[800] uppercase">
                 k le dortz
               </h1>
             </motion.div>
@@ -89,7 +89,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
                     exit="hidden"
                     className="group flex justify-between items-center gap-4"
                   >
-                    <h4 className="text-3xl lg:text--4xl  xl:text-6xl uppercase font-bold group-hover:scale-110 transition-all duration-300 tracking-widest">
+                    <h4 className="text-3xl lg:text--4xl  xl:text-6xl uppercase font-[800] group-hover:scale-110 transition-all duration-300 tracking-widest">
                       {nav.text}
                     </h4>
                   </motion.div>
@@ -105,7 +105,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
             className="absolute right-8 -bottom-0 md:bottom-0 flex justify-center items-center 2xl:bottom-0 z-20"
             onClick={() => openModal()}
           >
-            <h6 className="uppercase text-2xl font-bold cursor-pointer hover:scale-110 transition-all duration-300 tracking-widest">
+            <h6 className="uppercase text-2xl font-[800] cursor-pointer hover:scale-110 transition-all duration-300 tracking-widest">
               contact
             </h6>
           </motion.div>
