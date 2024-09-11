@@ -6,7 +6,6 @@ import Modal from '../../components/Modal';
 import ContactUs from '../../components/ContactUs';
 import BeautyProjects from '@/components/BeautyProjects';
 import { getBeautyProjects } from '@/lib/actions/project.actions';
-import Loading from './loading';
 
 const Beauty = () => {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -71,9 +70,9 @@ const Beauty = () => {
         </div>
       </div>
       <div className="p-8 xl:p-16 2xl:p-32 flex flex-col w-full items-center justify-center gap-8">
-        <Suspense fallback={<Loading />}>
-          <ProjectsWithData />
-        </Suspense>
+        <ProjectsWithData />
+        {/* <Suspense fallback={<Loading />}>
+        </Suspense> */}
       </div>
       <div className="w-full h-full flex justify-between items-center py-2 md:py-8 px-2 md:px-4">
         <Link href="/">
@@ -117,9 +116,9 @@ const ProjectsWithData = () => {
     fetchProjects();
   }, []);
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   return <BeautyProjects projects={projects} />;
 };
