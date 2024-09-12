@@ -27,8 +27,6 @@ const navLinks = [
 
 const Home = ({ searchParams }: SearchParamProps) => {
   const isAdmin = searchParams?.admin === 'true';
-
-  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -38,11 +36,6 @@ const Home = ({ searchParams }: SearchParamProps) => {
   function closeModal() {
     setIsOpen(false);
   }
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-  };
 
   return (
     <div className="relative flex flex-col px-4  md:px-8 lg:px-16 py-12 dark:bg-black">
@@ -70,10 +63,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
               initial="show"
               animate="show"
               exit="hidden"
-              className="flex justify-center items-start cursor-pointer"
-              onClick={toggleTheme}
-              onMouseEnter={toggleTheme}
-              onMouseLeave={toggleTheme}
+              className="flex justify-center items-start"
             >
               <h1 className="text-4xl lg:text-6xl xl:text-8xl font-[800] uppercase">
                 k le dortz

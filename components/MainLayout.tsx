@@ -1,6 +1,5 @@
 'use client';
 
-import { ThemeProvider } from './theme-provider';
 import SmoothScroll from './SmoothScroll';
 import React from 'react';
 import { AnimatePresence } from 'framer-motion';
@@ -9,16 +8,9 @@ import { AnimatePresence } from 'framer-motion';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <SmoothScroll>
-        <AnimatePresence mode="wait">{children}</AnimatePresence>
-      </SmoothScroll>
-    </ThemeProvider>
+    <SmoothScroll>
+      <AnimatePresence mode="wait">{children}</AnimatePresence>
+    </SmoothScroll>
   );
 };
 

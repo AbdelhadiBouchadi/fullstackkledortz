@@ -75,9 +75,13 @@ const FashionProjects = ({ projects }: FashionProjectsProps) => {
               height={project.aspectRatio === '9/16' ? 700 : 400}
               priority={project.priority}
               sizes="50vw"
+              className="group-hover:scale-[98%] transition-all duration-300 "
             />
-            <div className="absolute top-0 left-0 w-full h-full hidden group-hover:flex group-hover:justify-center group-hover:items-center bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out" />
+            {/* <div className="absolute top-0 left-0 w-full h-full hidden group-hover:flex group-hover:justify-center group-hover:items-center bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out" />
             <div className="absolute top-0 left-0 w-full h-full justify-center items-center flex text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out uppercase text-center project-title ">
+              {project.title}
+            </div> */}
+            <div className="w-full h-full  mt-4  text-black text-xl project-title transition-all duration-300 group-hover:translate-x-1 group-hover:translate-y-1 text-start">
               {project.title}
             </div>
           </motion.div>
