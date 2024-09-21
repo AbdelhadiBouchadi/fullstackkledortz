@@ -94,11 +94,7 @@ const FashionProjects = ({ projects }: FashionProjectsProps) => {
               initial="hidden"
               whileInView="show"
               exit="hidden"
-              className={cn(
-                'relative h-full w-full group',
-                project.imageSize === 'petite' && 'scale-75',
-                project.imageSize === 'grande' && 'scale-125'
-              )}
+              className={cn('relative h-full w-full group')}
               onClick={() => openModal(project)}
             >
               <Image

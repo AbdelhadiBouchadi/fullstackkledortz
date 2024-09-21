@@ -71,12 +71,10 @@ const Beauty = () => {
       </div>
       <div className="p-8 xl:p-16 2xl:p-32 flex flex-col w-full items-center justify-center gap-8">
         <ProjectsWithData />
-        {/* <Suspense fallback={<Loading />}>
-        </Suspense> */}
       </div>
       <div className="w-full h-full flex justify-between items-center py-2 md:py-8 px-2 md:px-4">
-        <Link href="/">
-          <h4 className="uppercase text-xl md:text-2xl xl:text-4xl font-[800] hover:scale-125 transition-all duration-300 tracking-widest">
+        <Link href="/" className="py-8">
+          <h4 className="uppercase text-xl md:text-2xl xl:text-[80px] 2xl:text-[128px] font-[800] hover:scale-110 transition-all duration-300 tracking-widest">
             k le dortz
           </h4>
         </Link>
