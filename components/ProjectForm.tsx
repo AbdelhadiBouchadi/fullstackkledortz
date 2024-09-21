@@ -13,7 +13,6 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Input } from './ui/input';
 import Dropdown from './Dropdown';
 import { useRouter } from 'next/navigation';
-import { Checkbox } from './ui/checkbox';
 import { FileUploader } from './FileUploader';
 import SubmitButton from './SubmitButton';
 
@@ -35,6 +34,7 @@ const ProjectForm = ({ type, project, projectId }: ProjectFormProps) => {
           position: project.position as 'start' | 'center' | 'end',
           aspectRatio: project.aspectRatio as '16/9' | '9/16',
           category: project.category as 'fashion' | 'beauty' | 'luxury',
+          imageSize: project.imageSize as 'petite' | 'moyenne' | 'grande',
         }
       : projectDefaultValues;
 
@@ -205,6 +205,23 @@ const ProjectForm = ({ type, project, projectId }: ProjectFormProps) => {
             )}
           />
         </div>
+
+        <FormField
+          control={form.control}
+          name="imageSize"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormControl>
+                <Dropdown
+                  type="image size"
+                  onChangeHandler={field.onChange}
+                  value={field.value}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}

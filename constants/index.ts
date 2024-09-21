@@ -5,6 +5,7 @@ export const projectDefaultValues = {
   videoSource: '',
   speed: 0, // assuming a neutral default value
   aspectRatio: '16/9', // default to '16/9', adjust as needed
+  imageSize: 'moyenne',
   imageUrl: '',
   category: 'fashion', // default to 'fashion', adjust as needed
 };

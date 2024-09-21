@@ -9,6 +9,7 @@ export interface IProject extends Document {
   videoSource: string;
   speed: number;
   aspectRatio: '16/9' | '9/16';
+  imageSize: 'petite' | 'moyenne' | 'grande';
   imageUrl?: string;
   category: 'fashion' | 'beauty' | 'luxury';
   createdAt: Date;
@@ -23,6 +24,11 @@ const ProjectSchema = new Schema<IProject>({
   videoSource: { type: String, required: true },
   speed: { type: Number, min: -4, max: 4, required: true },
   aspectRatio: { type: String, enum: ['16/9', '9/16'], required: true },
+  imageSize: {
+    type: String,
+    enum: ['petite', 'moyenne', 'grande'],
+    required: true,
+  },
   imageUrl: { type: String },
   category: {
     type: String,

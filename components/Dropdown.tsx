@@ -12,7 +12,13 @@ import { useEffect, useState } from 'react';
 type DropdownProps = {
   value?: string | number;
   onChangeHandler: (value: string | number) => void;
-  type: 'category' | 'position' | 'priority' | 'speed' | 'aspect ratio'; // Added type prop to differentiate between categories and positions
+  type:
+    | 'category'
+    | 'position'
+    | 'priority'
+    | 'speed'
+    | 'aspect ratio'
+    | 'image size'; // Added type prop to differentiate between categories and positions
 };
 
 const categories = [
@@ -42,6 +48,12 @@ const aspectRatioOptions = [
   { id: '9/16', name: '9:16' },
 ];
 
+const imageSizeOptions = [
+  { id: 'petite', name: 'petite' },
+  { id: 'moyenne', name: 'moyenne' },
+  { id: 'grande', name: 'grande' },
+];
+
 const Dropdown = ({ value, onChangeHandler, type }: DropdownProps) => {
   const [selectedValue, setSelectedValue] = useState(value?.toString() || '');
 
@@ -60,13 +72,14 @@ const Dropdown = ({ value, onChangeHandler, type }: DropdownProps) => {
   if (type === 'priority') items = priorityOptions;
   if (type === 'speed') items = speedOptions;
   if (type === 'aspect ratio') items = aspectRatioOptions;
+  if (type === 'image size') items = imageSizeOptions;
 
   return (
     <Select onValueChange={handleChange}>
       <SelectTrigger className="shad-select-trigger">
         <SelectValue placeholder={`Choose ${type}`} />
       </SelectTrigger>
-      <SelectContent className="shad-select-content">
+      <SelectContent className="shad-select-content capitalize">
         {items.map((item) => (
           <SelectItem
             key={item.id}

@@ -12,6 +12,7 @@ export interface CreateProjectParams {
   videoSource: string;
   speed: number;
   aspectRatio: '16/9' | '9/16';
+  imageSize: 'petite' | 'moyenne' | 'grande';
   imageUrl: string;
   category: 'fashion' | 'beauty' | 'luxury';
 }
@@ -24,6 +25,7 @@ export interface UpdateProjectParams {
   videoSource?: string;
   speed?: number;
   aspectRatio?: '16/9' | '9/16';
+  imageSize: 'petite' | 'moyenne' | 'grande';
   imageUrl?: string;
   category?: 'fashion' | 'beauty' | 'luxury';
 }
