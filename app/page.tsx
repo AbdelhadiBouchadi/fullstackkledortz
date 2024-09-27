@@ -57,37 +57,6 @@ const Home = ({ searchParams }: SearchParamProps) => {
           </div>
         </div>
         <div className="h-[85svh] 2xl:h-[90vh] w-full dark:bg-black bg-white   relative flex flex-col md:flex-row items-center justify-between  px-8 2xl:px-24">
-          {/* <div className="flex flex-col items-start justify-around h-full md:gap-20 2xl:gap-52 2xl:py-12 py-8 z-20">
-            <motion.div
-              variants={fadeIn('right', 0.4)}
-              initial="show"
-              animate="show"
-              exit="hidden"
-              className="flex justify-center items-start"
-            >
-              <h1 className="text-4xl lg:text-6xl xl:text-8xl font-[800] uppercase">
-                k le dortz
-              </h1>
-            </motion.div>
-            <div className="flex flex-col justify-between items-start gap-12 2xl:gap-32">
-              {navLinks.map((nav, index) => (
-                <Link href={nav.link} key={index}>
-                  <motion.div
-                    variants={fadeIn('right', 0.4 + (2 * index) / 10)}
-                    initial="hidden"
-                    animate="show"
-                    exit="hidden"
-                    className="group flex justify-between items-center gap-4"
-                  >
-                    <h4 className="text-3xl lg:text--4xl  xl:text-6xl uppercase font-[800] group-hover:scale-110 transition-all duration-300 tracking-widest">
-                      {nav.text}
-                    </h4>
-                  </motion.div>
-                </Link>
-              ))}
-            </div>
-          </div> */}
-
           <motion.div
             variants={fadeIn('left', 0.4)}
             initial="show"
@@ -96,21 +65,19 @@ const Home = ({ searchParams }: SearchParamProps) => {
             className="absolute right-8 -bottom-0 md:bottom-0 flex justify-center items-center 2xl:bottom-0 z-20"
             onClick={() => openModal()}
           >
-            <h6 className="uppercase text-4xl lg:text-6xl 2xl:text-9xl font-[800] cursor-pointer hover:scale-110 transition-all duration-300 tracking-widest">
+            <h6 className="uppercase text-4xl 2xl:text-6xl  font-[800] cursor-pointer hover:scale-110 transition-all duration-300 tracking-widest">
               contact
             </h6>
           </motion.div>
           {/* Left section with title and links */}
-          <div className="flex flex-col items-start justify-around h-full md:gap-20 2xl:gap-10 2xl:py-12 py-8 z-20">
+          <div className="flex flex-col items-start justify-around h-full md:gap-20 2xl:gap-10 2xl:py-12 py-8 z-20 xl:w-[70%] ">
             {/* Title */}
-            <div className="flex justify-center items-start">
-              <h1 className="text-4xl lg:text-6xl 2xl:text-9xl font-[800] uppercase">
-                k le dortz
-              </h1>
-            </div>
+            <h1 className="w-full text-4xl lg:text-7xl 2xl:text-[180px] text-start font-[800] uppercase">
+              k le dortz
+            </h1>
 
             {/* Navigation links (left side) */}
-            <div className="flex flex-col justify-between items-start gap-12 2xl:gap-64 ">
+            <div className="w-full flex flex-col justify-between items-start gap-12 2xl:gap-64 ">
               {navLinksLeft.map((nav, index) => (
                 <Link href={nav.link} key={index}>
                   <motion.div
@@ -120,10 +87,10 @@ const Home = ({ searchParams }: SearchParamProps) => {
                     exit="hidden"
                     className={cn(
                       'group flex justify-between items-center gap-4',
-                      index === 1 ? 'ml-32' : ''
+                      index === 1 ? 'ml-36 2xl:ml-96' : ''
                     )}
                   >
-                    <h4 className="text-3xl lg:text-4xl xl:text-6xl 2xl:text-8xl uppercase font-bold group-hover:scale-110 transition-all duration-300 tracking-widest project-title">
+                    <h4 className="text-3xl lg:text-4xl xl:text-7xl 2xl:text-[180px] text-end uppercase  group-hover:scale-110 transition-all duration-300 tracking-widest project-title">
                       {nav.text}
                     </h4>
                   </motion.div>
@@ -141,7 +108,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
                 exit="hidden"
                 className="group flex justify-between items-center gap-4 mb-20 md:mb-0 md:mt-32 "
               >
-                <h4 className="text-3xl lg:text-4xl xl:text-6xl 2xl:text-8xl uppercase font-bold group-hover:scale-110 transition-all duration-300 tracking-widest project-title">
+                <h4 className="text-3xl lg:text-4xl xl:text-7xl 2xl:text-[180px] text-end uppercase  group-hover:scale-110 transition-all duration-300 tracking-widest project-title">
                   {navLinkRight.text}
                 </h4>
               </motion.div>
