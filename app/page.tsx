@@ -56,7 +56,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
             <div className="h-full w-0.5 bg-black dark:bg-white relative glitch-line"></div>
           </div>
         </div>
-        <div className="h-[85svh] 2xl:h-[90vh] w-full dark:bg-black bg-white   relative flex flex-col md:flex-row items-center justify-between  px-8 2xl:px-24">
+        <div className="h-[85svh] 2xl:h-[90vh] w-full dark:bg-black bg-white   relative flex flex-col md:flex-row items-center justify-between  px-8">
           <motion.div
             variants={fadeIn('left', 0.4)}
             initial="show"
