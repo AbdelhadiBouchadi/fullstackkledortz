@@ -72,7 +72,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
           {/* Left section with title and links */}
           <div className="flex flex-col items-start justify-around h-full md:gap-20 2xl:gap-10 2xl:py-12 py-8 z-20 xl:w-[70%] ">
             {/* Title */}
-            <h1 className="w-full text-4xl lg:text-7xl 2xl:text-[180px] text-start font-[800] uppercase">
+            <h1 className="w-full text-4xl lg:text-7xl 2xl:text-[160px] text-start font-[800] uppercase">
               k le dortz
             </h1>
 
@@ -87,10 +87,10 @@ const Home = ({ searchParams }: SearchParamProps) => {
                     exit="hidden"
                     className={cn(
                       'group flex justify-between items-center gap-4',
-                      index === 1 ? 'ml-36 2xl:ml-96' : ''
+                      index === 1 ? 'ml-36 2xl:ml-64' : ''
                     )}
                   >
-                    <h4 className="text-3xl lg:text-4xl xl:text-7xl 2xl:text-[180px] text-end uppercase  group-hover:scale-110 transition-all duration-300 tracking-widest project-title">
+                    <h4 className="text-3xl lg:text-4xl xl:text-7xl 2xl:text-[150px] text-end uppercase  group-hover:scale-110 transition-all duration-300 tracking-widest project-title">
                       {nav.text}
                     </h4>
                   </motion.div>
@@ -108,7 +108,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
                 exit="hidden"
                 className="group flex justify-between items-center gap-4 mb-20 md:mb-0 md:mt-32 "
               >
-                <h4 className="text-3xl lg:text-4xl xl:text-7xl 2xl:text-[180px] text-end uppercase  group-hover:scale-110 transition-all duration-300 tracking-widest project-title">
+                <h4 className="text-3xl lg:text-4xl xl:text-7xl 2xl:text-[150px] text-end uppercase  group-hover:scale-110 transition-all duration-300 tracking-widest project-title">
                   {navLinkRight.text}
                 </h4>
               </motion.div>
