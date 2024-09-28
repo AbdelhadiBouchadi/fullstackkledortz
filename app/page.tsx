@@ -72,7 +72,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
           {/* Left section with title and links */}
           <div className="flex flex-col items-start justify-around h-full md:gap-20 2xl:gap-10 2xl:py-12 py-8 z-20 xl:w-[70%] ">
             {/* Title */}
-            <h1 className="w-full text-4xl lg:text-7xl 2xl:text-[160px] text-start font-[800] uppercase">
+            <h1 className="w-full text-4xl lg:text-7xl 2xl:text-[150px] text-start font-[800] uppercase">
               k le dortz
             </h1>
 
