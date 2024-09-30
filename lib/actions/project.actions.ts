@@ -49,15 +49,12 @@ export const updateProject = async (project: UpdateProjectParams) => {
   }
 };
 
-export const deleteProject = async ({
-  projectId,
-  path,
-}: DeleteProjectParams) => {
+export const deleteProject = async ({ projectId }: DeleteProjectParams) => {
   try {
     await connectToDatabase();
 
     const deletedProject = await Project.findByIdAndDelete(projectId);
-    if (deletedProject) revalidatePath(path);
+    if (deletedProject) revalidatePath('/admin');
   } catch (error) {
     handleError(error);
   }

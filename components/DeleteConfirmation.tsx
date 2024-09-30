@@ -21,7 +21,6 @@ import { Button, buttonVariants } from './ui/button';
 import { cn } from '@/lib/utils';
 
 export const DeleteConfirmation = ({ projectId }: { projectId: string }) => {
-  const pathname = usePathname();
   let [isPending, startTransition] = useTransition();
 
   return (
@@ -51,7 +50,7 @@ export const DeleteConfirmation = ({ projectId }: { projectId: string }) => {
           <AlertDialogAction
             onClick={() =>
               startTransition(async () => {
-                await deleteProject({ projectId, path: pathname });
+                await deleteProject({ projectId });
               })
             }
             className="bg-red-500"

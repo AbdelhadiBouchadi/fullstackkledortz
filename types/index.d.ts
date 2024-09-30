@@ -32,7 +32,6 @@ export interface UpdateProjectParams {
 
 export interface DeleteProjectParams {
   projectId: string;
-  path: string;
 }
 
 export interface GetAllProjectsParams {
